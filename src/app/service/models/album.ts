@@ -1,4 +1,4 @@
-import {Banda} from './banda';
+import { Banda } from "./Banda";
 
 export class Album {
 idAlbum : number

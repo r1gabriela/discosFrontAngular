@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+import { BandaService } from './../service/banda.service';
+import { Banda } from '../service/models/Banda';
+
+
+
 @Component({
   selector: 'app-banda',
   templateUrl: './banda.component.html',
@@ -7,9 +12,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BandaComponent implements OnInit {
 
-  constructor() { }
+  banda = new Banda();
 
-  ngOnInit(): void {
+  bandas: Banda[];
+
+
+
+  constructor(private bandaService: BandaService) { }
+
+  ngOnInit() {
+
+    this.listar();
   }
 
+  salvar() {
+    this.bandaService.salvar(this.banda).subscribe(resp => {
+      this.banda = resp;
+      this.listar();
+    }),
+      (error) => {
+        this.listar();
+        console.log(error.error);
+  }
+    
 }
+  listar() {
+    this.bandaService.listar().subscribe(bandas => this.bandas = bandas);
+  }
+}
+
+

@@ -1,24 +1,37 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Banda } from './models/banda';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Banda } from './models/Banda';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BandaService {
 
-  SALVAR = 'http://localhost:8080/meusCds/apirest/banda/salvar';
-  listar = 'http://localhost:8080/meusCds/apirest/banda/listar';
-  excluir = 'http://localhost:8080/meusCds/apirest/banda/excluir';
+   SALVAR = 'http://localhost:8080/meusCds/apirest/banda/salvar';
+   LISTAR = 'http://localhost:8080/meusCds/apirest/banda/listar';
+   EXCLUIR = 'http://localhost:8080/meusCds/apirest/banda/excluir';
   
 
   constructor(private http: HttpClient) { }
 
-  salvar = async(banda: Banda => 
-    return this.http.post<Banda>(this.salvar, banda)
-  })
-    return this.http.post<Banda>(this.salvar, banda);
-    
+  salvar(banda: Banda): Observable<Banda> {
+    return this.http.post<Banda>(this.SALVAR, banda).pipe(catchError(this.handleError));
   }
+
+  listar(){
+    return this.http.get<Banda[]>(this.LISTAR);
+  } 
+
+  excluir(banda: Banda) {
+    return this.http.post<Banda>(this.EXCLUIR, banda);
+
+  }
+
+  handleError(error: HttpErrorResponse){
+    return throwError(console.log(error.error));
+  }
+  
 }
