@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Banda } from './models/Banda';
+import { Banda } from './models/banda';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,8 @@ export class BandaService {
   } 
 
   excluir(banda: Banda) {
-    return this.http.post<Banda>(this.EXCLUIR, banda);
+    debugger
+    return this.http.post(this.EXCLUIR, banda);
 
   }
 

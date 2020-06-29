@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { BandaService } from './../service/banda.service';
-import { Banda } from '../service/models/Banda';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { Banda } from './../service/models/banda';
 
 
 
@@ -12,17 +13,23 @@ import { Banda } from '../service/models/Banda';
 })
 export class BandaComponent implements OnInit {
 
+  bandaForm:FormGroup;
+
+  show: boolean = false;
+
   banda = new Banda();
 
   bandas: Banda[];
 
 
 
-  constructor(private bandaService: BandaService) { }
+  constructor(private bandaService: BandaService, private fb:FormBuilder) { }
 
   ngOnInit() {
 
+    this.createForm();
     this.listar();
+
   }
 
   salvar() {
@@ -38,6 +45,20 @@ export class BandaComponent implements OnInit {
 }
   listar() {
     this.bandaService.listar().subscribe(bandas => this.bandas = bandas);
+    this.show = true;
+  }
+
+  excluir(){
+    debugger
+    this.bandaService.excluir(this.banda).subscribe(resp =>
+      console.log(resp));
+  }
+
+  createForm(){
+    this.bandaForm = this.fb.group({
+      'nome': new FormControl,
+      'genero': new FormControl
+    });
   }
 }
 
