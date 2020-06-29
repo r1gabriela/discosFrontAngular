@@ -48,9 +48,9 @@ export class BandaComponent implements OnInit {
     this.show = true;
   }
 
-  excluir(){
+  excluir(idBanda: number){
     debugger
-    this.bandaService.excluir(this.banda).subscribe(resp =>
+    this.bandaService.excluir(idBanda).subscribe(resp =>
       console.log(resp));
   }
 

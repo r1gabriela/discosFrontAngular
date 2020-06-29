@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -25,9 +25,10 @@ export class BandaService {
     return this.http.get<Banda[]>(this.LISTAR);
   } 
 
-  excluir(banda: Banda) {
+  excluir(idBanda) {
     debugger
-    return this.http.post(this.EXCLUIR, banda);
+    return this.http.delete(this.EXCLUIR,{
+       params: new HttpParams().set('idBanda', idBanda)});
 
   }
 

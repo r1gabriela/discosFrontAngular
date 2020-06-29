@@ -17,7 +17,7 @@
     <tr *ngFor="let banda of bandas">
     <td>{{ banda.nome }}</td>
     <td>{{ banda.genero }}</td>
-    <td><button class="btn btn-sm btn-danger" (click)="excluir()">Delete</button></td>
+    <td><button class="btn btn-sm btn-danger" (click)="excluir(banda.idBanda)">Delete</button></td>
     </tr>
     </table>
     
