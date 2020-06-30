@@ -3,7 +3,8 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Banda } from './models/banda';
+import { Banda } from './models/Banda';
+
 
 @Injectable({
   providedIn: 'root'

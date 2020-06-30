@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { BandaService } from './../service/banda.service';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Banda } from './../service/models/banda';
+import { Banda } from '../service/models/Banda';
+
 
 
 
@@ -50,8 +51,10 @@ export class BandaComponent implements OnInit {
 
   excluir(idBanda: number){
     debugger
-    this.bandaService.excluir(idBanda).subscribe(resp =>
-      console.log(resp));
+    this.bandaService.excluir(idBanda).subscribe(resp => {
+      console.log(resp);
+      this.listar();
+    });     
   }
 
   createForm(){
