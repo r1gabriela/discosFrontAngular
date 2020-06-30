@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlbumComponent } from './album/album.component';
 import { BandaComponent } from './banda/banda.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlbumComponent,
-    BandaComponent
+    BandaComponent,
+    NavComponent
   ],
   imports: [
     HttpClientModule,
